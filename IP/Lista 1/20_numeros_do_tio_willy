@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(){
+    int N;
+    int n[20];
+    scanf("%d", &N);
+    scanf("%d", &n);
+
+    int  contador = 0;
+
+    for(int i = 0; i < n; i++){
+        if(n[i] == N){
+            contador++;
+        }
+    }
+
+    printf("%d apareceu %d vezes", N, contador);
+    return 0;
+}
