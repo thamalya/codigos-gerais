@@ -8,12 +8,9 @@ int main(){
     int  contador = 0;
     int cont_parar = 0;
 
-    for(int i = 0; ; i++){
+    for(int i = 0;n[i] == -1 || cont_parar >= 20; i++){
         scanf("%d", &n[i]);
         cont_parar++;
-        if(n[i] == -1 || cont_parar >= 20){
-            break;
-        }
     }
 
     for(int i = 0; i < cont_parar; i++){
