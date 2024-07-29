@@ -25,6 +25,9 @@ Livro *NovoLivro(Livro *biblioteca, int *tam){//adicionando o livro na bibliotec
         printf("Digite o codigo do livro(ISBN): ");
         scanf(" %19[^\n]", tmp_livro.ISBN);
 
+        tmp_livro.autores = NULL;
+        tmp_livro.qtd_autores = 0;
+
         biblioteca = (Livro *) realloc(biblioteca, (*tam+1) * sizeof(Livro));
         if(biblioteca == NULL){
             printf("Erro de alocacao!\n");
@@ -104,15 +107,21 @@ void ExibeBiblioteca(Livro *biblioteca, int tam){//exibindo os livros existentes
     printf("\n\n-----Livros Existentes-----\n");
     for(int i = 0; i < tam; i++){
         printf("Titulo: %s\n", biblioteca[i].titulo);
-        printf("Codigo do livro: %s\n\n", biblioteca[i].ISBN);
+        for(int j = 0; j < biblioteca[i].qtd_autores; j++){
+            printf("Autor: %s\n", biblioteca[i].autores[j].nome);
+            printf("Ano de Nascimento: %d\n", biblioteca[i].autores[j].ano_nascimento);
+            printf("CPF: %s\n", biblioteca[i].autores[j].CPF);
+            printf("\n");
+        }
     }
     printf("\n");
 }
 
 void Desaloca(Livro *biblioteca, int tam){
     for(int i = 0; i < tam; i++){
-        free(biblioteca);
+        free(biblioteca[i].autores);
     }
+    free(biblioteca);
     printf("\n\nPonteiros liberados com sucesso!\n");
 }
 
